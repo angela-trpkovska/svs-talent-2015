@@ -21,6 +21,12 @@ namespace App1.Common
         /// </summary>
         public string Currency;
 
+
+        public CurrencyAmount(decimal a, string c)
+        {
+            Amount = a;
+            Currency = c;
+        }
         
 
     }

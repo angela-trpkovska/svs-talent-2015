@@ -1,4 +1,5 @@
 ﻿using App1.Common;
+using App1.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace App1.Accounts
 {
-    public class TransactionAccount:Account
+    public class TransactionAccount:Account,ITransactionAccount
     {
         private CurrencyAmount limit;
 
         public CurrencyAmount Limit
         {
-            public get { return limit; }
+            get { return limit; }
             private set { limit = value; }
         }
 

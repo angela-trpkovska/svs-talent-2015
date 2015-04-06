@@ -1,4 +1,5 @@
 ﻿using App1.Common;
+using App1.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,41 +8,41 @@ using System.Threading.Tasks;
 
 namespace App1.Accounts
 {
-    public class DepositAccount:Account
+    public class DepositAccount:Account,IDepositAccount
     {
-        private TimePeriod period;
+       private TimePeriod period;
 
         public TimePeriod Period
         {
-            public get { return period; }
+            get { return period; }
             private set { period = value; }
         }
         private InterestRate interest;
 
         public InterestRate Interest
         {
-            public get { return interest; }
+             get { return interest; }
             private set { interest = value; }
         }
         private DateTime startDate;
 
         public DateTime StartDate
         {
-            public get { return startDate; }
+            get { return startDate; }
             private set { startDate = value; }
         }
         private DateTime endDate;
 
         public DateTime EndDate
         {
-            public get { return endDate; }
+             get { return endDate; }
             private set { endDate = value; }
         }
         private TransactionAccount transactionAccount;
 
         public TransactionAccount TransactionAccount
         {
-            public get { return transactionAccount; }
+             get { return transactionAccount; }
             private set { transactionAccount = value; }
         }
 

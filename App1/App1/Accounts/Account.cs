@@ -1,4 +1,5 @@
 ﻿using App1.Common;
+using App1.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace App1.Accounts
     /// </summary>
     /// 
 
-    public abstract class Account
+    public abstract class Account :IAccount
     {
         /// <summary>
         /// this is a field for the id of an account
@@ -21,7 +22,7 @@ namespace App1.Accounts
 
         public long ID
         {
-            public get { return id; }
+             get { return id; }
             private set { id = value; }
         }
 
@@ -32,7 +33,7 @@ namespace App1.Accounts
 
         public string Number
         {
-            public get { return number; }
+            get { return number; }
             private set { number = value; }
         }
 
@@ -43,7 +44,7 @@ namespace App1.Accounts
 
         public string Currency
         {
-            public get; private set;
+             get; private set;
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace App1.Accounts
 
         public CurrencyAmount Balance
         {
-            public get { return balance; }
+            get { return balance; }
             private set { balance = value; }
         }
 
