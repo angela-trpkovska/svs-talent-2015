@@ -1,5 +1,7 @@
 ﻿using App1.Accounts;
 using App1.Common;
+using App1.Interfaces;
+using App1.Processors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,121 +17,169 @@ namespace TransactionApplication
     public partial class frmMain : Form
     {
 
-        public TransactionAccount taccount;
+        public ITransactionAccount taccount;
+        public TimePeriod tperiod;
+        public UnitOfTime unit1;
+        public InterestRate interestRate;
+        public UnitOfTime unit2;
+
+
         public frmMain()
         {
             InitializeComponent();
         }
 
-        private void lblNumber_Click(object sender, EventArgs e)
-        {
+       
+        /// <summary>
+        /// method to populate info for transaction account
+        /// </summary>
+        /// <param name="account"></param>
 
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void populateInfoForAccount(Account account)
+        private void PopulateInfoForTransactionAccount(IAccount account)
         {
             lblID.Text = account.ID.ToString();
             lblNumber.Text = account.Number;
             lblCurrency.Text = account.Currency;
-            lblBalance.Text = account.Balance.Amount.ToString();
-
+            lblBalance.Text = account.Balance.amount.ToString();
 
         }
 
 
-        private void checkTransactionAccount(Account account)
+        /// <summary>
+        /// method to populate info for deposit account
+        /// </summary>
+        /// <param name="account"></param>
+
+        private void PopulateInfoForDepositAccount(IAccount account)
+        {
+            lblIDto.Text = account.ID.ToString();
+            lblNumberTo.Text = account.Number;
+            lblCurrencyTo.Text = account.Currency;
+            lblBalanceTo.Text = account.Balance.amount.ToString();
+        }
+
+
+        /// <summary>
+        /// method to check if the account is transaction and write information in the labels
+        /// </summary>
+        /// <param name="account"></param>
+        private void CheckTransactionAccount(IAccount account)
         {
             if (account is TransactionAccount)
             {
-                TransactionAccount ta = (TransactionAccount)account;
-               
-                lblLimitAmount.Text= ta.Limit.Amount.ToString();
-                lblLimitCurencyInfo.Text = ta.Limit.Currency;
-
-              
-
+                ITransactionAccount ta = (ITransactionAccount)account;
+                lblLimitAmount.Text= ta.Limit.amount.ToString();
+                lblLimitCurrency.Text = ta.Limit.currency;
+             
             }
-
             else {
-
                 lblLimitAmount.Text = string.Empty;
                 lblLimitCurrency.Text = string.Empty;
               }
         }
 
 
-        private void checkDepositAccount(Account account)
+
+
+        /// <summary>
+        /// method to check if the account is deposit and write information in the labels
+        /// </summary>
+        /// <param name="account">the parametar for the account that we check</param>
+        private void CheckDepositAccount(IAccount account)
         {
             if (account is DepositAccount)
             {
-                DepositAccount da = (DepositAccount)account;
-
-                lblPeriod.Text = da.Period.Period + " "+da.Period.Unit.ToString();
-                lblInterest.Text = da.Interest.Percent.ToString() + " " + da.Interest.Unit.ToString();
+                IDepositAccount da = (IDepositAccount)account;
+                lblPeriod.Text = da.Period.period + " "+da.Period.unit.ToString();
+                lblInterest.Text = da.Interest.percent.ToString() + " " + da.Interest.unit.ToString();
                 lblStartDate.Text = da.StartDate.ToString();
                 lblEndDate.Text = da.EndDate.ToString();
-                
-
             }
-
             else
             {
                 lblPeriod.Text = string.Empty;
-                 lblInterest.Text = string.Empty;
+                lblInterest.Text = string.Empty;
                 lblStartDate.Text = string.Empty;
                 lblEndDate.Text = string.Empty;
-
-
-
-
-            }
+             }
         }
+
 
         private void btnCreateTransactionAccount_Click(object sender, EventArgs e)
         {
             string currency = txtCurrency.Text;
             decimal limitAmount =Convert.ToDecimal(txtLimit.Text);
             taccount = new TransactionAccount(currency, limitAmount);
-            populateInfoForAccount(taccount);
-            checkTransactionAccount(taccount);
-
-
-        }
+          
+            PopulateInfoForTransactionAccount(taccount);
+            CheckTransactionAccount(taccount);
+         }
 
        
 
         private void btnCreateDepositAccount_Click(object sender, EventArgs e)
         {
-            TimePeriod tperiod;
-            UnitOfTime unit1;
+            
             Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
-            tperiod.Period = Convert.ToInt16(txtPeriod.Text);
-            tperiod.Unit = unit1;
-
-
-            InterestRate interestRate;
-            UnitOfTime unit2;
-            interestRate.Percent = Convert.ToDecimal(txtInterestRate.Text);
+            tperiod.period = Convert.ToInt16(txtPeriod.Text);
+            tperiod.unit = unit1;
+            
+            interestRate.percent = Convert.ToDecimal(txtInterestRate.Text);
             Enum.TryParse(cbUnitOfTime2.SelectedItem.ToString(), out unit2);
-            interestRate.Unit = unit2;
+            interestRate.unit = unit2;
 
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
 
-
-            DepositAccount daccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, taccount);
-
-            populateInfoForAccount(daccount);
-            checkDepositAccount(daccount);
+            IDepositAccount daccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, taccount);
+            
+            PopulateInfoForDepositAccount(daccount);
+            CheckDepositAccount(daccount);
 
 
         }
+
+
+        
+
+
+        private void btnMakeTransaction_Click(object sender, EventArgs e)
+        {
+            string currency = txtCurrency.Text;
+            decimal limitAmount = Convert.ToDecimal(txtLimit.Text);
+            ITransactionAccount transactionAccount= new TransactionAccount(currency, limitAmount);
+
+            Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
+            tperiod.period = Convert.ToInt16(txtPeriod.Text);
+            tperiod.unit = unit1;
+            
+            interestRate.percent = Convert.ToDecimal(txtInterestRate.Text);
+            Enum.TryParse(cbUnitOfTime2.SelectedItem.ToString(), out unit2);
+            interestRate.unit = unit2;
+
+            DateTime startDate = dtpStartDate.Value;
+            DateTime endDate = dtpEndDate.Value;
+
+            //IDepositAccount depositAccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
+            ILoanAccount loanAccount = new LoanAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
+
+            ITransactionProcessor tprocessor = new TransactionProcessor();
+            CurrencyAmount currencyAmount=new CurrencyAmount(20000,"MKD");
+            tprocessor.processTransaction(TransactionType.Transfer, currencyAmount, transactionAccount,loanAccount);
+
+            //tprocessor.processTransaction(TransactionType.Transfer, currencyAmount, transactionAccount,depositAccount);
+            PopulateInfoForTransactionAccount(transactionAccount);
+            //populateInfoForDepositAccount(depositAccount);
+            PopulateInfoForDepositAccount(loanAccount);
+
+            //checkDepositAccount(depositAccount);
+            CheckDepositAccount(loanAccount);
+            CheckTransactionAccount(transactionAccount);
+
+
+        }
+
+    
 
 
     }

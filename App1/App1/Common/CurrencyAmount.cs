@@ -7,25 +7,29 @@ using System.Threading.Tasks;
 namespace App1.Common
 {
     /// <summary>
-    /// structure for currency amount
+    /// structure for currency and amount
     /// </summary>
     public struct CurrencyAmount
     {
         /// <summary>
         /// field for the amount
         /// </summary>
-        public decimal Amount;
+        public decimal amount;
 
         /// <summary>
         /// field for the currency
         /// </summary>
-        public string Currency;
+        public string currency;
 
-
-        public CurrencyAmount(decimal a, string c)
+       /// <summary>
+        /// parameterized constructor
+       /// </summary>
+       /// <param name="amount">variable for the amount</param>
+        /// <param name="currency">variable for the currency</param>
+        public CurrencyAmount(decimal amount, string currency)
         {
-            Amount = a;
-            Currency = c;
+            this.amount = amount;
+            this.currency = currency;
         }
         
 

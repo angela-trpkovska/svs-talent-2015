@@ -1,4 +1,5 @@
 ﻿using App1.Common;
+using App1.Helpers;
 using App1.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace App1.Accounts
 {
+    /// <summary>
+    /// class for the deposit account
+    /// </summary>
     public class DepositAccount:Account,IDepositAccount
     {
        private TimePeriod period;
@@ -38,16 +42,24 @@ namespace App1.Accounts
              get { return endDate; }
             private set { endDate = value; }
         }
-        private TransactionAccount transactionAccount;
+        private ITransactionAccount transactionAccount;
 
-        public TransactionAccount TransactionAccount
+        public ITransactionAccount TransactionAccount
         {
              get { return transactionAccount; }
             private set { transactionAccount = value; }
         }
 
-        
-        public DepositAccount(string currency,TimePeriod depositPeriod,InterestRate interestRate,DateTime startDate,DateTime endDate,TransactionAccount transactionAccount):base(currency)
+        /// <summary>
+        /// constructor with parametars for the deposit account
+        /// </summary>
+        /// <param name="currency"></param>
+        /// <param name="depositPeriod"></param>
+        /// <param name="interestRate"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="transactionAccount"></param>
+        public DepositAccount(string currency,TimePeriod depositPeriod,InterestRate interestRate,DateTime startDate,DateTime endDate,ITransactionAccount transactionAccount):base(currency)
         {
             this.period = depositPeriod;
             this.interest = interestRate;
@@ -56,7 +68,16 @@ namespace App1.Accounts
             this.transactionAccount = transactionAccount;
 
         }
-            
 
+
+        /// <summary>
+        /// method to generate account number by calling method from  AcountHelper
+        /// </summary>
+        /// <returns></returns>
+        protected override string GenerateAccountNumber()
+        {
+            Type ga = typeof(DepositAccount);
+            return AccountHelper.GenerateAccountNumber(ga, ID);
+        }
     }
 }

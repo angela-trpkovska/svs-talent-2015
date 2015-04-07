@@ -1,0 +1,5 @@
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\App1\obj\Debug\App1.csprojResolveAssemblyReference.cache
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\App1\bin\Debug\App1.dll
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\App1\bin\Debug\App1.pdb
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\App1\obj\Debug\App1.dll
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\App1\obj\Debug\App1.pdb

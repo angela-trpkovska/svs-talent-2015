@@ -1,0 +1,11 @@
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\obj\Debug\TransactionApplication.csprojResolveAssemblyReference.cache
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\obj\Debug\TransactionApplication.frmMain.resources
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\obj\Debug\TransactionApplication.Properties.Resources.resources
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\obj\Debug\TransactionApplication.csproj.GenerateResource.Cache
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\bin\Debug\TransactionApplication.exe.config
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\bin\Debug\TransactionApplication.exe
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\bin\Debug\TransactionApplication.pdb
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\bin\Debug\App1.dll
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\bin\Debug\App1.pdb
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\obj\Debug\TransactionApplication.exe
+C:\Users\Angela-PC\Documents\GitHub\svs-talent-2015\App1\TransactionApplication\obj\Debug\TransactionApplication.pdb

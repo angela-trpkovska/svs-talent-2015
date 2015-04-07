@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace App1.Common
 {
+    /// <summary>
+    /// struct for the interest rate
+    /// </summary>
     public struct InterestRate
     {
-        public decimal Percent;
-        public UnitOfTime Unit;
+        public decimal percent;
+        public UnitOfTime unit;
+
     }
 }

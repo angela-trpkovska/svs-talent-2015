@@ -1,4 +1,5 @@
 ﻿using App1.Common;
+using App1.Helpers;
 using App1.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 namespace App1.Accounts
 {
     /// <summary>
-    /// class for info about Account
+    /// class for informations about Account
     /// </summary>
     /// 
 
-    public abstract class Account :IAccount
+    public abstract class Account:IAccount
     {
         /// <summary>
         /// this is a field for the id of an account
@@ -48,7 +49,7 @@ namespace App1.Accounts
         }
 
         /// <summary>
-        /// 
+        /// this is a filed for the balance of an account
         /// </summary>
         private CurrencyAmount balance;
 
@@ -58,11 +59,7 @@ namespace App1.Accounts
             private set { balance = value; }
         }
 
-
-        
-
-        //public CurrencyAmount Balance { get { return balance; } private set { balance = value; } }
-
+       
 
         /// <summary>
         /// this is the constructor with three arguments
@@ -75,8 +72,7 @@ namespace App1.Accounts
             this.ID = id;
             this.Number = number;
             this.Currency = currency;
-            this.Balance = new CurrencyAmount();
-            
+            this.Balance = new CurrencyAmount(25000,currency);
         }
 
         /// <summary>
@@ -85,64 +81,71 @@ namespace App1.Accounts
         /// <param name="currency">the currency for the account</param>
         public Account(string currency) : this(-1, "X", currency)
         {
+            this.ID = AccountHelper.GenerateAccountId();
+            this.Number = GenerateAccountNumber();
+
         }
 
-        //public Account()
-        //{ 
-        //}
 
-#region PublicMethods
+
+        protected abstract string GenerateAccountNumber();
+        
+
+
+        #region publicMethods
+
         /// <summary>
-        /// 
+        ///  method for the performing the debit operation
         /// </summary>
-        /// <param name="amount"></param>
+        /// <param name="Amount">parametar for the amount</param>
         /// <returns></returns>
-        public  virtual TransactionStatus DebitAmount(CurrencyAmount amount)
+        public virtual TransactionStatus DebitAmount(CurrencyAmount Amount)
         {
-            if (sameCurrency(balance, amount))
+            if (sameCurrency(balance, Amount))
             {
-                decimal result = balance.Amount - amount.Amount;
+                decimal result = balance.amount - Amount.amount;
 
                 if (result > 0)
                 {
-                    balance.Amount -= amount.Amount;
+                    balance.amount -= Amount.amount;
                     return TransactionStatus.Completed;
                 }
-                else
-                    return TransactionStatus.Failed;
+                
             }
-            return TransactionStatus.InProcess;
+             return TransactionStatus.Failed;
 
-         }
+        }
 
         /// <summary>
-        /// 
+        /// method for the performing the credit operation
         /// </summary>
-        /// <param name="amount"></param>
+        /// <param name="amount">parametar for the amount</param>
         /// <returns></returns>
-        public virtual TransactionStatus CreditAmount(CurrencyAmount amount)
+        public virtual TransactionStatus CreditAmount(CurrencyAmount Amount)
         {
-            if (sameCurrency(balance,amount))
+            if (sameCurrency(balance,Amount))
             {
-                balance.Amount += amount.Amount;
+                balance.amount += Amount.amount;
                 return TransactionStatus.Completed;
-                }
-                else
-                    return TransactionStatus.Failed;
+            }
+            
+            return TransactionStatus.Failed;
         }
-#endregion
+        #endregion
 
 
         #region PrivateMethods
+       
         /// <summary>
-        /// 
+        /// private method to check if the amount provided 
+        /// in the DebitAmount and CreditAmount method has the same currency as the account currency
         /// </summary>
-        /// <param name="ca1"></param>
-        /// <param name="ca2"></param>
+        /// <param name="ca1">varibale for the first currency amount</param>
+        /// <param name="ca2">varibale for the second currency amount</param>
         /// <returns></returns>
         private bool sameCurrency(CurrencyAmount ca1, CurrencyAmount ca2)
         {
-            if (ca1.Currency.Equals(ca2.Currency))
+            if (ca1.currency.Equals(ca2.currency))
                 return true;
             else return false;
         }

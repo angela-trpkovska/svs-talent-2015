@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace App1.Common
 {
+    /// <summary>
+    /// struct for time period
+    /// </summary>
     public struct TimePeriod
     {
-        public int Period;
-        public UnitOfTime Unit;
+        public int period;
+        public UnitOfTime unit;
     }
 }
