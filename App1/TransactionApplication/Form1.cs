@@ -17,13 +17,15 @@ namespace TransactionApplication
     public partial class frmMain : Form
     {
 
-        public ITransactionAccount taccount;
+        
         public TimePeriod tperiod;
         public UnitOfTime unit1;
         public InterestRate interestRate;
         public UnitOfTime unit2;
-        public IDepositAccount depositAccount=null;
-        public ILoanAccount loanAccount = null;
+        public ITransactionAccount taccount;
+        public IDepositAccount depositAccount;
+        public ILoanAccount loanAccount;
+        public ITransactionProcessor tprocessor;
 
 
         public frmMain()
@@ -58,6 +60,9 @@ namespace TransactionApplication
             lblNumberTo.Text = account.Number;
             lblCurrencyTo.Text = account.Currency;
             lblBalanceTo.Text = account.Balance.amount.ToString();
+            
+
+
         }
 
 
@@ -122,7 +127,7 @@ namespace TransactionApplication
         private void btnCreateDepositAccount_Click(object sender, EventArgs e)
         {
             
-            Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
+            /*Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
             tperiod.period = Convert.ToInt16(txtPeriod.Text);
             tperiod.unit = unit1;
             
@@ -134,7 +139,11 @@ namespace TransactionApplication
             DateTime endDate = dtpEndDate.Value;
 
             depositAccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, taccount);
-            
+            */
+
+
+            depositAccount = createDepositAccount();
+
             PopulateInfoForDepositAccount(depositAccount);
             CheckDepositAccount(depositAccount);
 
@@ -151,6 +160,8 @@ namespace TransactionApplication
             decimal limitAmount = Convert.ToDecimal(txtLimit.Text);
             ITransactionAccount transactionAccount= new TransactionAccount(currency, limitAmount);
 
+
+            /*
             Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
             tperiod.period = Convert.ToInt16(txtPeriod.Text);
             tperiod.unit = unit1;
@@ -162,10 +173,13 @@ namespace TransactionApplication
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
 
+             */
             //IDepositAccount depositAccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
-            loanAccount = new LoanAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
+          //  loanAccount = new LoanAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
 
-            ITransactionProcessor tprocessor = new TransactionProcessor();
+            loanAccount = createLoanAccount();
+
+            tprocessor = TransactionProcessor.GetTransactionProcessor();
             CurrencyAmount currencyAmount=new CurrencyAmount(20000,"MKD");
             tprocessor.processTransaction(TransactionType.Transfer, currencyAmount, transactionAccount,loanAccount);
 
@@ -185,6 +199,8 @@ namespace TransactionApplication
         {
             IAccount[] accounts = new IAccount[2];
             
+
+            
             //if we have created depositAccount than use that
             if (depositAccount != null)
               accounts[0] = depositAccount;
@@ -194,17 +210,101 @@ namespace TransactionApplication
                 accounts[1] = loanAccount;
 
 
-            TransactionProcessor transactionProcessor = new TransactionProcessor();
+           tprocessor = TransactionProcessor.GetTransactionProcessor();
 
-          
-                TransactionType transactionType;
-                Enum.TryParse(comboBox1.SelectedItem.ToString(), out transactionType);
-                //string currency =tbGTAmount.Text;
-                // transactionProcessor.ProcessGroupTransaction(transactionType,currency,)
+            //TransactionType transactionType;
+            // Enum.TryParse(comboBox1.SelectedItem.ToString(), out transactionType);
+               
+                
+            decimal amount = Convert.ToDecimal(tbGTAmount.Text);
+            string currency = tbGTCurrency.Text;
+            CurrencyAmount currencyAmount=new CurrencyAmount(amount,currency);
+
+           tprocessor.ProcessGroupTransaction(TransactionType.Debit, currencyAmount, accounts);
+
+           PopulateInfoForDepositAccount(accounts[0]);
+           //PopulateInfoForDepositAccount(accounts[1]);
+
+            DisplayLastTransactionDetails();
+
+
+
       
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loanAccount = createLoanAccount();
+            PopulateInfoForDepositAccount(loanAccount);
+            CheckDepositAccount(loanAccount);
+
+
+
+        }
+
+
+        public DepositAccount createDepositAccount()
+        {
+          
+
+            Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
+            tperiod.period = Convert.ToInt16(txtPeriod.Text);
+            tperiod.unit = unit1;
+
+            interestRate.percent = Convert.ToDecimal(txtInterestRate.Text);
+            Enum.TryParse(cbUnitOfTime2.SelectedItem.ToString(), out unit2);
+            interestRate.unit = unit2;
+
+            DateTime startDate = dtpStartDate.Value;
+            DateTime endDate = dtpEndDate.Value;
+
+            return new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate,taccount);
+
+
+
+          
+
+        }
+
+
+
+        public LoanAccount createLoanAccount()
+        {
+           
+
+            Enum.TryParse(cbUnitOfTime.SelectedItem.ToString(), out unit1);
+            tperiod.period = Convert.ToInt16(txtPeriod.Text);
+            tperiod.unit = unit1;
+
+            interestRate.percent = Convert.ToDecimal(txtInterestRate.Text);
+            Enum.TryParse(cbUnitOfTime2.SelectedItem.ToString(), out unit2);
+            interestRate.unit = unit2;
+
+            DateTime startDate = dtpStartDate.Value;
+            DateTime endDate = dtpEndDate.Value;
+
+           return new LoanAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, taccount);
+        
+             
+        }
+
     
+
+
+        private void DisplayLastTransactionDetails()
+        {
+            TransactionLogEntry entry = tprocessor.LastTransaction;
+            lblTypeTLE.Text = entry.Type.ToString();
+            lblAmountTLE.Text = entry.CurrencyAmount.amount.ToString() +" "+ entry.CurrencyAmount.currency;
+            lblStatusTLE.Text = entry.Status.ToString();
+            lblTotalTcount.Text = tprocessor.TransactionCount.ToString();
+
+            
+        
+        }
+
+
+        
 
 
     }

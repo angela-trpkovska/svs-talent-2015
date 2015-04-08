@@ -82,8 +82,19 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tbGTCurrency = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblTotalTcount = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lblTypeTLE = new System.Windows.Forms.Label();
+            this.lblAmountTLE = new System.Windows.Forms.Label();
+            this.lblStatusTLE = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCreateTransactionAccount
@@ -598,11 +609,112 @@
             this.tbGTCurrency.Size = new System.Drawing.Size(93, 20);
             this.tbGTCurrency.TabIndex = 52;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(650, 10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(156, 23);
+            this.button1.TabIndex = 53;
+            this.button1.Text = "Create Loan Account";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblTotalTcount
+            // 
+            this.lblTotalTcount.AutoSize = true;
+            this.lblTotalTcount.Location = new System.Drawing.Point(75, 96);
+            this.lblTotalTcount.Name = "lblTotalTcount";
+            this.lblTotalTcount.Size = new System.Drawing.Size(41, 13);
+            this.lblTotalTcount.TabIndex = 54;
+            this.lblTotalTcount.Text = "label19";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.lblStatusTLE);
+            this.groupBox3.Controls.Add(this.lblTotalTcount);
+            this.groupBox3.Controls.Add(this.lblAmountTLE);
+            this.groupBox3.Controls.Add(this.lblTypeTLE);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Location = new System.Drawing.Point(668, 243);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(247, 115);
+            this.groupBox3.TabIndex = 55;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Transaction Log Entry";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 23);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(31, 13);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Type";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(7, 46);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(43, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Amount";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(9, 70);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(37, 13);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Status";
+            // 
+            // lblTypeTLE
+            // 
+            this.lblTypeTLE.AutoSize = true;
+            this.lblTypeTLE.Location = new System.Drawing.Point(75, 23);
+            this.lblTypeTLE.Name = "lblTypeTLE";
+            this.lblTypeTLE.Size = new System.Drawing.Size(41, 13);
+            this.lblTypeTLE.TabIndex = 3;
+            this.lblTypeTLE.Text = "label22";
+            // 
+            // lblAmountTLE
+            // 
+            this.lblAmountTLE.AutoSize = true;
+            this.lblAmountTLE.Location = new System.Drawing.Point(75, 46);
+            this.lblAmountTLE.Name = "lblAmountTLE";
+            this.lblAmountTLE.Size = new System.Drawing.Size(41, 13);
+            this.lblAmountTLE.TabIndex = 4;
+            this.lblAmountTLE.Text = "label23";
+            // 
+            // lblStatusTLE
+            // 
+            this.lblStatusTLE.AutoSize = true;
+            this.lblStatusTLE.Location = new System.Drawing.Point(75, 70);
+            this.lblStatusTLE.Name = "lblStatusTLE";
+            this.lblStatusTLE.Size = new System.Drawing.Size(41, 13);
+            this.lblStatusTLE.TabIndex = 5;
+            this.lblStatusTLE.Text = "label24";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 96);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 13);
+            this.label22.TabIndex = 55;
+            this.label22.Text = "Total count";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 359);
+            this.ClientSize = new System.Drawing.Size(1000, 494);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbGTCurrency);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -635,6 +747,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -696,6 +810,16 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox tbGTCurrency;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTotalTcount;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblTypeTLE;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblStatusTLE;
+        private System.Windows.Forms.Label lblAmountTLE;
+        private System.Windows.Forms.Label label22;
     }
 }
 
