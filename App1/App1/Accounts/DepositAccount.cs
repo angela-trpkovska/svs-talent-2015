@@ -76,8 +76,8 @@ namespace App1.Accounts
         /// <returns></returns>
         protected override string GenerateAccountNumber()
         {
-            Type ga = typeof(DepositAccount);
-            return AccountHelper.GenerateAccountNumber(ga, ID);
+            Type depostiAccount = typeof(DepositAccount);
+            return AccountHelper.GenerateAccountNumber(depostiAccount, ID);
         }
     }
 }

@@ -32,8 +32,34 @@ namespace App1.Processors
                 default:
                     return TransactionStatus.Failed;
             }
-
-           
         }
+
+
+
+
+
+
+
+
+        public TransactionStatus ProcessGroupTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts)
+        {
+            if (transactionType != TransactionType.Credit || transactionType != TransactionType.Debit)
+                return TransactionStatus.Failed;
+            else
+            {
+                foreach (IAccount element in accounts)
+                {
+                    if (transactionType == TransactionType.Credit)
+                        element.CreditAmount(amount);
+                    else
+                        //then is debit account
+                        element.DebitAmount(amount);
+              }
+
+                return TransactionStatus.Completed;
+           }
+       }
+
+
     }
 }

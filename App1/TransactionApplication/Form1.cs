@@ -22,6 +22,8 @@ namespace TransactionApplication
         public UnitOfTime unit1;
         public InterestRate interestRate;
         public UnitOfTime unit2;
+        public IDepositAccount depositAccount=null;
+        public ILoanAccount loanAccount = null;
 
 
         public frmMain()
@@ -131,10 +133,10 @@ namespace TransactionApplication
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
 
-            IDepositAccount daccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, taccount);
+            depositAccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, taccount);
             
-            PopulateInfoForDepositAccount(daccount);
-            CheckDepositAccount(daccount);
+            PopulateInfoForDepositAccount(depositAccount);
+            CheckDepositAccount(depositAccount);
 
 
         }
@@ -161,7 +163,7 @@ namespace TransactionApplication
             DateTime endDate = dtpEndDate.Value;
 
             //IDepositAccount depositAccount = new DepositAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
-            ILoanAccount loanAccount = new LoanAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
+            loanAccount = new LoanAccount(txtCurrency.Text, tperiod, interestRate, startDate, endDate, transactionAccount);
 
             ITransactionProcessor tprocessor = new TransactionProcessor();
             CurrencyAmount currencyAmount=new CurrencyAmount(20000,"MKD");
@@ -177,6 +179,29 @@ namespace TransactionApplication
             CheckTransactionAccount(transactionAccount);
 
 
+        }
+
+        private void btnMakeGroupTransaction_Click(object sender, EventArgs e)
+        {
+            IAccount[] accounts = new IAccount[2];
+            
+            //if we have created depositAccount than use that
+            if (depositAccount != null)
+              accounts[0] = depositAccount;
+            
+            //if we have created loanAccount use that
+            if (loanAccount != null)
+                accounts[1] = loanAccount;
+
+
+            TransactionProcessor transactionProcessor = new TransactionProcessor();
+
+          
+                TransactionType transactionType;
+                Enum.TryParse(comboBox1.SelectedItem.ToString(), out transactionType);
+                //string currency =tbGTAmount.Text;
+                // transactionProcessor.ProcessGroupTransaction(transactionType,currency,)
+      
         }
 
     

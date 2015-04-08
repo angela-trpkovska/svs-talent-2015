@@ -11,6 +11,8 @@ namespace App1.Interfaces
     {
      TransactionStatus processTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount accountFrom, IAccount accountTo);
 
+     TransactionStatus ProcessGroupTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts);
+
 
     }
 }

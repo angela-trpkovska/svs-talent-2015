@@ -72,10 +72,16 @@
             this.btnMakeTransaction = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnMakeGroupTransaction = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tbGTAmount = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tbGTCurrency = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -503,23 +509,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Deposit Account";
             // 
-            // label13
+            // label16
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 20);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(18, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "ID";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 42);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(44, 13);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Number";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 89);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Balance";
             // 
             // label15
             // 
@@ -530,20 +527,88 @@
             this.label15.TabIndex = 2;
             this.label15.Text = "Currency";
             // 
-            // label16
+            // label14
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(7, 89);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 13);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Balance";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 42);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(44, 13);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Number";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 20);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(18, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "ID";
+            // 
+            // btnMakeGroupTransaction
+            // 
+            this.btnMakeGroupTransaction.Location = new System.Drawing.Point(665, 212);
+            this.btnMakeGroupTransaction.Name = "btnMakeGroupTransaction";
+            this.btnMakeGroupTransaction.Size = new System.Drawing.Size(119, 23);
+            this.btnMakeGroupTransaction.TabIndex = 47;
+            this.btnMakeGroupTransaction.Text = "Group Transaction";
+            this.btnMakeGroupTransaction.UseVisualStyleBackColor = true;
+            this.btnMakeGroupTransaction.Click += new System.EventHandler(this.btnMakeGroupTransaction_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Debit",
+            "Credit"});
+            this.comboBox1.Location = new System.Drawing.Point(881, 167);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(96, 21);
+            this.comboBox1.TabIndex = 48;
+            // 
+            // tbGTAmount
+            // 
+            this.tbGTAmount.Location = new System.Drawing.Point(665, 170);
+            this.tbGTAmount.Name = "tbGTAmount";
+            this.tbGTAmount.Size = new System.Drawing.Size(89, 20);
+            this.tbGTAmount.TabIndex = 49;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(665, 154);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(43, 13);
+            this.label17.TabIndex = 50;
+            this.label17.Text = "Amount";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(787, 154);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(49, 13);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Currency";
+            // 
+            // tbGTCurrency
+            // 
+            this.tbGTCurrency.Location = new System.Drawing.Point(772, 170);
+            this.tbGTCurrency.Name = "tbGTCurrency";
+            this.tbGTCurrency.Size = new System.Drawing.Size(93, 20);
+            this.tbGTCurrency.TabIndex = 52;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(895, 359);
+            this.ClientSize = new System.Drawing.Size(1000, 359);
+            this.Controls.Add(this.tbGTCurrency);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.tbGTAmount);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btnMakeGroupTransaction);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMakeTransaction);
@@ -625,6 +690,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnMakeGroupTransaction;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox tbGTAmount;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox tbGTCurrency;
     }
 }
 
