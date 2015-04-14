@@ -9,39 +9,18 @@ namespace App1.Interfaces
 {
     public interface IAccount
     {
+        long ID { get; }
+        string Number { get; }
+        string Currency { get; }
+        CurrencyAmount Balance { get; }
+        //Defining event based on delegate BalanceChanged
+        event EventHandler<BalanceChangedEventArguments> OnBalanceChanged;
 
 
-        long ID
-        {
-            get;
-        }
+       TransactionStatus DebitAmount(CurrencyAmount Amount);
+       TransactionStatus CreditAmount(CurrencyAmount Amount);
+
+   }
 
 
-        string Number
-        {
-            get;
-        }
-
-
-
-        string Currency
-        {
-            get;
-        }
-
-
-        CurrencyAmount Balance
-        {
-            get;
-        }
-
-
-        TransactionStatus DebitAmount(CurrencyAmount Amount);
-
-        TransactionStatus CreditAmount(CurrencyAmount Amount);
-
-       
-
-
-    }
 }

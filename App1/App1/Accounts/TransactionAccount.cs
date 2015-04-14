@@ -12,6 +12,8 @@ namespace App1.Accounts
     /// <summary>
     /// class for the transaction account
     /// </summary>
+    /// 
+    [AccountMetadata(AccountDescription = "This is transaction account", AccountLimitations = "This account is only for transaction")]
     public class TransactionAccount:Account,ITransactionAccount
     {
         private CurrencyAmount limit;
@@ -40,9 +42,9 @@ namespace App1.Accounts
         /// <returns></returns>
         protected override string GenerateAccountNumber()
         {
-            Type ta = typeof(TransactionAccount);
-            return AccountHelper.GenerateAccountNumber(ta,ID);
-
+            //Type ta = typeof(TransactionAccount);
+            //return AccountHelper.GenerateAccountNumber<TransactionAccount>(ta,ID);
+            return AccountHelper.GenerateAccountNumber<TransactionAccount>(ID);
         }
     }
 }

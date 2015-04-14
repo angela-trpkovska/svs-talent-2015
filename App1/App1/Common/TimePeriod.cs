@@ -13,5 +13,13 @@ namespace App1.Common
     {
         public int period;
         public UnitOfTime unit;
+
+        public TimePeriod(int period, UnitOfTime unit)
+        {
+            this.period = period;
+            this.unit = unit;
+
+        }
+
     }
 }

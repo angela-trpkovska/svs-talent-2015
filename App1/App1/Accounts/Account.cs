@@ -16,6 +16,11 @@ namespace App1.Accounts
 
     public abstract class Account:IAccount
     {
+
+        //event when the balance is changed
+        // public event BalanceChanged OnBalanceChanged;
+        public event EventHandler<BalanceChangedEventArguments> OnBalanceChanged;
+
         /// <summary>
         /// this is a field for the id of an account
         /// </summary>
@@ -32,6 +37,7 @@ namespace App1.Accounts
         /// </summary>
         private string number;
 
+        [FormatRestriction(MaxLength = 16, FormatString = "XXXX-XXXX-XXXX-XXXX")]
         public string Number
         {
             get { return number; }
@@ -48,7 +54,8 @@ namespace App1.Accounts
              get; private set;
         }
 
-        /// <summary>
+    
+         /// <summary>
         /// this is a filed for the balance of an account
         /// </summary>
         private CurrencyAmount balance;
@@ -56,10 +63,30 @@ namespace App1.Accounts
         public CurrencyAmount Balance
         {
             get { return balance; }
-            private set { balance = value; }
+            private set {
+                if (!value.Equals(balance))
+                {
+                    balance = value;
+                    BalanceChangedEventArguments ceargs = new BalanceChangedEventArguments(this, balance);
+                    //OnBalanceChanged += new BalanceChanged(printMessage);
+                    OnBalanceChanged += new EventHandler<BalanceChangedEventArguments>(printMessage);
+                    OnBalanceChanged.Invoke(this,ceargs);
+                }
+            }
         }
 
-       
+
+        
+        /// <summary>
+        /// a handler for the OnBalanceChanged that will print a message with the event arguments details to the console output
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="bceArgs"></param>
+        public void printMessage(System.Object sender, BalanceChangedEventArguments bceArgs)
+        {
+            Console.WriteLine("{0} {1} {2} ", bceArgs.Account.ID, bceArgs.Account.Number, bceArgs.Account.Currency);
+            Console.WriteLine("Print Message Handler");
+        }
 
         /// <summary>
         /// this is the constructor with three arguments
@@ -72,7 +99,10 @@ namespace App1.Accounts
             this.ID = id;
             this.Number = number;
             this.Currency = currency;
-            this.Balance = new CurrencyAmount(25000,currency);
+
+           // this.Balance = new CurrencyAmount(25000,currency);
+            this.Balance = new CurrencyAmount(0, currency);
+
         }
 
         /// <summary>
@@ -101,6 +131,7 @@ namespace App1.Accounts
         /// <returns></returns>
         public virtual TransactionStatus DebitAmount(CurrencyAmount Amount)
         {
+            try { 
             if (sameCurrency(balance, Amount))
             {
                 decimal result = balance.amount - Amount.amount;
@@ -111,9 +142,20 @@ namespace App1.Accounts
                     return TransactionStatus.Completed;
                 }
                 
+                
             }
-             return TransactionStatus.Failed;
-
+            else
+            {
+                throw new ApplicationException("Different values for the currency");
+                throw new CurrencyMismatchException("Different values for the currency");
+            }
+            }
+            catch (ApplicationException exception)
+            {
+                System.Console.WriteLine("{0}", exception);
+            }
+            return TransactionStatus.Failed;
+          
         }
 
         /// <summary>
@@ -123,13 +165,27 @@ namespace App1.Accounts
         /// <returns></returns>
         public virtual TransactionStatus CreditAmount(CurrencyAmount Amount)
         {
-            if (sameCurrency(balance,Amount))
+            try
             {
-                balance.amount += Amount.amount;
-                return TransactionStatus.Completed;
+                if (sameCurrency(balance, Amount))
+                {
+                    balance.amount += Amount.amount;
+                    return TransactionStatus.Completed;
+                }
+
+                else {
+                    throw new ApplicationException("Different values for the currency");
+                    throw new CurrencyMismatchException("Different values for the currency");
+                }
             }
-            
+            catch (ApplicationException exception)
+            {
+                System.Console.WriteLine("{0}", exception);
+                
+            }
+
             return TransactionStatus.Failed;
+          
         }
         #endregion
 
@@ -152,6 +208,11 @@ namespace App1.Accounts
 
 
         #endregion
+
+
+
+
+
 
     }
 }
