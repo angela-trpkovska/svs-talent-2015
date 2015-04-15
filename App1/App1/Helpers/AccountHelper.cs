@@ -58,6 +58,13 @@ namespace App1.Helpers
 
 
 
+        public string <T> (long accountId) where T:IAccount,new()
+        {
+           
+        
+        
+        }
+
 
     }
 }
