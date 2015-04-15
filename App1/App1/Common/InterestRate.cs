@@ -14,5 +14,11 @@ namespace App1.Common
         public decimal percent;
         public UnitOfTime unit;
 
+
+        public InterestRate(decimal percent, UnitOfTime unit)
+        {
+            this.percent = percent;
+            this.unit = unit;
+        }
     }
 }

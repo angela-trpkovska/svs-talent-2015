@@ -12,6 +12,8 @@ namespace App1.Accounts
     /// <summary>
     /// class for the deposit account
     /// </summary>
+    /// 
+    [AccountMetadata(AccountDescription="This is deposit account",AccountLimitations="This account is only for deposit")]
     public class DepositAccount:Account,IDepositAccount
     {
        private TimePeriod period;
@@ -76,8 +78,10 @@ namespace App1.Accounts
         /// <returns></returns>
         protected override string GenerateAccountNumber()
         {
-            Type depostiAccount = typeof(DepositAccount);
-            return AccountHelper.GenerateAccountNumber(depostiAccount, ID);
+           
+           // Type depostiAccount = typeof(DepositAccount);
+            //return AccountHelper.GenerateAccountNumber(depostiAccount, ID);
+            return AccountHelper.GenerateAccountNumber<DepositAccount>(ID);
         }
     }
 }

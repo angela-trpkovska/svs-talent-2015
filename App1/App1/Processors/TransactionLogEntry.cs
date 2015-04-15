@@ -11,48 +11,41 @@ namespace App1.Processors
 {
     public class TransactionLogEntry
     {
-        
         private TransactionType type;
-        private CurrencyAmount cAmount;
-        private IAccount[] accounts1;
-        private TransactionStatus status1;
+        private CurrencyAmount amount;
+        private IAccount[] accounts;
+        private TransactionStatus status;
 
 
         public TransactionType Type
         {
-          get{   return type;}
+          get {  return type;}
         }
-
-
 
         public CurrencyAmount CurrencyAmount
         {
-            get { return cAmount; }
+            get { return amount; }
         
         }
 
         public IAccount[] Accounts {
-            get { return accounts1; }
+            get { return accounts; }
           
         }
 
         public  TransactionStatus Status{
             get {
-                return status1;
+                return status;
             }
         }
-
-
-
-
 
         public TransactionLogEntry(TransactionType type, CurrencyAmount cAmount,IAccount[] accounts1, TransactionStatus status1)
         {
             // TODO: Complete member initialization
             this.type = type;
-            this.cAmount = cAmount;
-            this.accounts1 = accounts1;
-            this.status1 = status1;
+            this.amount = cAmount;
+            this.accounts = accounts1;
+            this.status = status1;
         }
 
 

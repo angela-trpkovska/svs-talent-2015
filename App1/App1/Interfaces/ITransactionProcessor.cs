@@ -11,30 +11,20 @@ namespace App1.Interfaces
     public interface ITransactionProcessor
     {
 
-         TransactionLogEntry LastTransaction
-        {
-            get;
-         }
+        TransactionLogEntry LastTransaction { get; }
+        int TransactionCount { get; }
+        TransactionLogEntry this[int index] { get; }
 
+        TransactionLogger ExternalLogger { get; set; }
+       
 
-      int TransactionCount
-        {
-            get;
-
-        }
-
-         TransactionLogEntry this[int index]
-        {
-           get;
-
-
-        }
 
 
      TransactionStatus processTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount accountFrom, IAccount accountTo);
 
      TransactionStatus ProcessGroupTransaction(TransactionType transactionType, CurrencyAmount amount, IAccount[] accounts);
 
+     TransactionStatus ChargeProcessingFee(CurrencyAmount amount, IEnumerable<IAccount> accounts);
 
     }
 }
