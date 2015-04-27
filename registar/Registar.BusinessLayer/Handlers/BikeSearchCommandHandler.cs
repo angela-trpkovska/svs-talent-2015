@@ -21,7 +21,7 @@ namespace Registar.BusinessLayer.Handlers
                 //        .Take(10);
                         //.ToList();
 
-                var query = from b in context.Bikes.Include("BikeHistory")
+                var query = from b in context.Bikes  //Include("BikeHistory")
                             select b;
                 if (!string.IsNullOrEmpty(command.Colour))
                 {

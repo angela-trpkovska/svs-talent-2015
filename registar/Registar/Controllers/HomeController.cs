@@ -8,6 +8,7 @@ using Registar.BusinessLayer.Contracts;
 using Registar.Models;
 using System.Data.Entity;
 using Registar.DataLayer;
+using Registar.DomainModel;
 
 namespace Registar.Controllers
 {
@@ -21,10 +22,12 @@ namespace Registar.Controllers
         public ActionResult Index()
         {
             //call BL
-           // BikeSearchCommand _command = new BikeSearchCommand();
-            //BikeSearchResult _result = CommandInvoker.InvokeCommand<BikeSearchCommand, BikeSearchResult>(_command);
+            BikeSearchCommand _command = new BikeSearchCommand();
+            BikeSearchResult _result = CommandInvoker.InvokeCommand<BikeSearchCommand, BikeSearchResult>(_command);
             //
-            return View("Index",db.Bikes.ToList());
+            _result.Result.Add(new Bike() { Colour = "red", Model = "R1", Producer = "Specialized", RegNumber = "007" });
+
+            return View("Index",_result.Result);
         }
 
         public ActionResult Index2()
