@@ -96,7 +96,17 @@ namespace App1.Helpers
               
         }
 
+<<<<<<< HEAD
+        public string <T> (long accountId) where T:IAccount,new()
+        {
+           
         
+        
+        }
+
+=======
+        
+>>>>>>> origin/master
 
     }
 }
