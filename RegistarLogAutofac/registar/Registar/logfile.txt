@@ -1,0 +1,3 @@
+﻿2015-04-28 01:07:19,967 [6] INFO  Test [(null)] - Info message
+2015-04-28 01:08:41,117 [5] INFO  Test [(null)] - Info message
+2015-04-28 01:30:56,025 [6] INFO  Test [(null)] - Info messsage

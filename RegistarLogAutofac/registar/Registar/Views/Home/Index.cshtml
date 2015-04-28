@@ -1,0 +1,27 @@
+﻿@model System.Collections.Generic.IEnumerable<Registar.DomainModel.Bike>
+    @{
+        Layout = "../MasterPage.cshtml";
+    }
+
+    @section HeaderScripts
+{
+        <script type="text/javascript"></script>
+        bla bla
+    }
+   
+
+    <table>
+        <tbody>
+            @foreach (var bike in this.Model)
+            {
+                <tr>
+                    <td>@bike.RegNumber</td>
+                    <td>@bike.Producer</td>
+                    <td>@bike.Model</td>
+                    <td>@bike.Colour</td>
+                    
+                </tr>
+            }
+
+        </tbody>
+    </table>
