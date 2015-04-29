@@ -1,0 +1,124 @@
+﻿@model IList<Example.Models.BikeModel>
+    @{
+        ViewBag.Title = "Indeks";
+    }
+
+    <!DOCTYPE HTML>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Test</title>
+
+        <script type="text/javascript">
+                function myFunction(){
+                var value1 = parseInt(document.getElementById('number1').value);
+                var value2 =parseInt( document.getElementById('number2').value);
+                document.getElementById('res').innerHTML = value1 + value2;
+                document.getElementById('res2').innerHTML = value1 * value2;
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">&nbsp;Bike Registar</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#"><span class="glyphicon glyphicon-home">&nbsp;Home</span></a></li>
+                                <li><a href="#about"><span class="glyphicon glyphicon-info-sign">&nbsp;About</span></a></li>
+                                <li><a href="#contact"><span class="glyphicon glyphicon-phone">&nbsp;Contact</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-3">
+
+                    <h2>List</h2>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">Register your bike</h4>
+                            <p class="list-group-item-text">You can easily register your bike,by creating account and entering the informations about your bike</p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">Search bike</h4>
+                            <p class="list-group-item-text">You can search the bike and find the owner and informations about the bike</p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">Transfer bike </h4>
+                            <p class="list-group-item-text">If you want to give </p>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6">
+                    <h2>Table</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Reg Number</th>
+                                    <th>Producer</th>
+                                    <th>Model</th>
+                                    <th>Color</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.RegNumber
+                                        </td>
+                                        <td>
+                                            @item.Producer
+                                        </td>
+                                        <td>
+                                            @item.Model
+                                        </td>
+                                        <td>
+                                            @item.Color
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <br />
+                        <input type="text" id="number1"><br>
+                        <input type="text" id="number2"><br>
+                        <br />
+                        <button id="btn1" type="button" onclick="myFunction()">Click Me</button>
+                        <br />
+                        <label id="res" for="result"></label>
+                        <br />
+                        <label id="res2" for="result"></label>
+                    </div>
+                    </div>
+               
+                <div class="col-md-3 col-lg-3">
+                   
+
+                </div>
+
+                    </div>
+
+                </div>
+</body>
+</html>
