@@ -23,7 +23,7 @@ namespace Registar.BusinessLayer.Handlers
 
                 var query = from b in context.Bikes  //Include("BikeHistory")
                             select b;
-                if (!string.IsNullOrEmpty(command.Colour))
+                /*if (!string.IsNullOrEmpty(command.Colour))
                 {
                     query = query.Where(x => x.Colour == command.Colour);
                 }
@@ -37,7 +37,7 @@ namespace Registar.BusinessLayer.Handlers
                         .Skip(command.PageIndex*command.PageSize)
                         .Take(command.PageSize);
                 //
-
+                */
                 BikeSearchResult result = new BikeSearchResult();
                 result.Result = query.ToList();
                 return result;

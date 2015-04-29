@@ -22,13 +22,35 @@ namespace Registar.Controllers
         public ActionResult Index()
         {
              //call BL
+            //BikeSearchCommand _command = new BikeSearchCommand();
+            //BikeSearchResult _result = CommandInvoker.InvokeCommand<BikeSearchCommand, BikeSearchResult>(_command);
+            //
+          
+            BikeSearchResult result=new BikeSearchResult();
+            result.Result=new List<Bike>();
+            //return View("Index",_result.Result);
+            return View("Index", result.Result);
+        }
+
+        public ActionResult Index3()
+        {
+            return View("Index3");
+        
+        }
+
+        //result to convert data to json
+       [HttpPost]
+        public ActionResult JsonData()
+        {
             BikeSearchCommand _command = new BikeSearchCommand();
             BikeSearchResult _result = CommandInvoker.InvokeCommand<BikeSearchCommand, BikeSearchResult>(_command);
-            //
-            _result.Result.Add(new Bike() { Colour = "red", Model = "R1", Producer = "Specialized", RegNumber = "007" });
-
-            return View("Index",_result.Result);
+            return Json( _result.Result, JsonRequestBehavior.AllowGet);
+            
         }
+        
+
+ 
+
 
         public ActionResult Index2()
         {

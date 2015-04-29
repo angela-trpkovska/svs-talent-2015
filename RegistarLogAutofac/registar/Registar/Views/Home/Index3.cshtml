@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index3</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+             $.ajax({
+                cache: false,
+                type: "POST",
+                url: "http://localhost:61322/Home/JsonData",
+                dataType: "json",
+                
+                
+                success:
+                    function getSearchResult(data) {
+                        $.each(data, function () {
+                            var row = table.insertRow(rowCount);
+                            var j = 0;
+                            $.each(this, function (k, v) {
+                                row.insertCell(j).innerHTML = v;
+                                j++;
+
+                            });
+                        });
+                    },
+        
+                   error: function () {
+                    alert('There was an error.');
+                }
+                 
+            }); // end $.ajax
+
+    })
+</script>
+
+
+</head>
+<body>
+    <div>
+        <table border="1" id="table">
+        <tbody></tbody>
+        </table>
+    </div>
+</body>
+</html>
